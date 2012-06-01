@@ -118,6 +118,9 @@ inline void hang(void)
 
 void board_init_f(unsigned long bootflag)
 {
+	uart0_init();
+	uart0_puts("\nHello world\n");
+
 	/*
 	 * We call relocate_code() with relocation target same as the
 	 * CONFIG_SYS_SPL_TEXT_BASE. This will result in relocation getting
