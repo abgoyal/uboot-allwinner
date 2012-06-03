@@ -135,7 +135,7 @@ reset:
 	orr	r0, r0, #0xd3
 	msr	cpsr,r0
 
-#if !defined(CONFIG_TEGRA2)
+#if !defined(CONFIG_TEGRA2) && !defined(CONFIG_SUNXI)
 /*
  * Setup vector:
  * (OMAP4 spl TEXT_BASE is not 32 byte aligned.
