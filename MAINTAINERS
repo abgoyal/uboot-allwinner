@@ -66,6 +66,13 @@ Oliver Brown <obrown@adventnetworks.com>
 
 	gw8260		MPC8260
 
+Holger Brunck <holger.brunck@keymile.com>
+
+	kmeter1		MPC8360
+	kmcoge5ne	MPC8360
+	tuge1		MPC8321
+	tuxx1		MPC8321
+
 Cyril Chemparathy <cyril@ti.com>
 
 	tnetv107x_evm	tnetv107x
@@ -431,7 +438,6 @@ Heiko Schocher <hs@denx.de>
 	charon		MPC5200
 	ids8247		MPC8247
 	jupiter		MPC5200
-	kmeter1		MPC8360
 	kmsupx5		MPC8321
 	mgcoge		MPC8247
 	mgcoge3ne	MPC8247
@@ -442,10 +448,6 @@ Heiko Schocher <hs@denx.de>
 	suvd3		MPC8321
 	uc101		MPC5200
 	ve8313		MPC8313
-
-Holger Brunck <holger.brunck@keymile.com>
-	tuge1		MPC8321
-	tuxx1		MPC8321
 
 Peter De Schrijver <p2@mind.be>
 
@@ -777,6 +779,10 @@ Linus Walleij <linus.walleij@linaro.org>
 	integratorap	various
 	integratorcp	various
 
+Luka Perkov <uboot@lukaperkov.net>
+
+	ib62x0		ARM926EJS
+
 Dave Peverley <dpeverley@mpc-data.co.uk>
 
 	omap730p2	ARM926EJS
@@ -787,6 +793,16 @@ Stelian Pop <stelian@popies.net>
 	at91sam9261ek	ARM926EJS (AT91SAM9261 SoC)
 	at91sam9263ek	ARM926EJS (AT91SAM9263 SoC)
 	at91sam9rlek	ARM926EJS (AT91SAM9RL SoC)
+
+Dave Purdy <david.c.purdy@gmail.com>
+
+	pogo_e02	ARM926EJS (Kirkwood SoC)
+
+Sricharan R <r.sricharan@ti.com>
+
+	omap4_panda	ARM ARMV7 (OMAP4xx SoC)
+	omap4_sdp4430	ARM ARMV7 (OMAP4xx SoC)
+	omap5_evm	ARM ARMV7 (OMAP5xx Soc)
 
 Thierry Reding <thierry.reding@avionic-design.de>
 
@@ -860,12 +876,6 @@ Greg Ungerer <greg.ungerer@opengear.com>
 	cm4116		ks8695p
 	cm4148		ks8695p
 
-Aneesh V <aneesh@ti.com>
-
-	omap4_panda	ARM ARMV7 (OMAP4xx SoC)
-	omap4_sdp4430	ARM ARMV7 (OMAP4xx SoC)
-	omap5_evm	ARM ARMV7 (OMAP5xx Soc)
-
 Marek Vasut <marek.vasut@gmail.com>
 
 	balloon3	xscale/pxa
@@ -931,6 +941,10 @@ Syed Mohammed Khasim <sm.khasim@gmail.com>
 Sughosh Ganu <urwithsughosh@gmail.com>
 
 	hawkboard	ARM926EJS (OMAP-L138)
+
+Vladimir Zapolskiy <vz@mleia.com>
+
+	devkit3250	lpc32xx
 
 -------------------------------------------------------------------------
 
@@ -1090,6 +1104,8 @@ Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 	AP325RXA	SH7723
 	SHMIN		SH7706
 	ECOVEC		SH7724
+	R0P7734     SH7734
+	AP_SH4A_4A  SH7734
 
 Mark Jonas <mark.jonas@de.bosch.com>
 
@@ -1191,6 +1207,7 @@ Macpaul Lin <macpaul@andestech.com>
 
 	ADP-AG101	N1213 (AG101 SoC)
 	ADP-AG101P	N1213 (AG101P XC5 FPGA)
+	ADP-AG102	N1213f (AG102 SoC with FPU)
 
 #########################################################################
 # OpenRISC Systems:							#

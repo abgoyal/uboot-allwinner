@@ -42,6 +42,7 @@
 
 #define CONFIG_ARCH_CPU_INIT
 #define CONFIG_BOARD_EARLY_INIT_F
+#define CONFIG_MISC_INIT_R
 #define CONFIG_MXC_GPIO
 
 #define CONFIG_MXC_UART
@@ -70,6 +71,19 @@
 #define CONFIG_CMD_EXT2
 #define CONFIG_CMD_FAT
 #define CONFIG_DOS_PARTITION
+
+#define CONFIG_CMD_SATA
+/*
+ * SATA Configs
+ */
+#ifdef CONFIG_CMD_SATA
+#define CONFIG_DWC_AHSATA
+#define CONFIG_SYS_SATA_MAX_DEVICE	1
+#define CONFIG_DWC_AHSATA_PORT_ID	0
+#define CONFIG_DWC_AHSATA_BASE_ADDR	SATA_ARB_BASE_ADDR
+#define CONFIG_LBA48
+#define CONFIG_LIBATA
+#endif
 
 #define CONFIG_CMD_PING
 #define CONFIG_CMD_DHCP
@@ -101,7 +115,6 @@
 #define CONFIG_ENV_OVERWRITE
 #define CONFIG_CONS_INDEX	       1
 #define CONFIG_BAUDRATE			       115200
-#define CONFIG_SYS_BAUDRATE_TABLE      {9600, 19200, 38400, 57600, 115200}
 
 /* Command definition */
 #include <config_cmd_default.h>
@@ -109,6 +122,8 @@
 #undef CONFIG_CMD_IMLS
 
 #define CONFIG_BOOTDELAY	       3
+
+#define CONFIG_PREBOOT                 ""
 
 #define CONFIG_LOADADDR			       0x10800000
 #define CONFIG_SYS_TEXT_BASE	       0x17800000
@@ -157,7 +172,6 @@
 /* Miscellaneous configurable options */
 #define CONFIG_SYS_LONGHELP
 #define CONFIG_SYS_HUSH_PARSER
-#define CONFIG_SYS_PROMPT_HUSH_PS2     "> "
 #define CONFIG_SYS_PROMPT	       "MX6QSABRELITE U-Boot > "
 #define CONFIG_AUTO_COMPLETE
 #define CONFIG_SYS_CBSIZE	       256
@@ -211,6 +225,7 @@
 #endif
 
 #define CONFIG_OF_LIBFDT
+#define CONFIG_CMD_BOOTZ
 
 #define CONFIG_SYS_DCACHE_OFF
 

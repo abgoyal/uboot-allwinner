@@ -212,9 +212,6 @@ extern unsigned long get_board_sys_clk(unsigned long dummy);
 
 /* Use the HUSH parser */
 #define CONFIG_SYS_HUSH_PARSER
-#ifdef CONFIG_SYS_HUSH_PARSER
-#define CONFIG_SYS_PROMPT_HUSH_PS2 "> "
-#endif
 
 /*
  * Pass open firmware flat tree
@@ -416,8 +413,6 @@ extern unsigned long get_board_sys_clk(unsigned long dummy);
 #endif
 
 /* Misc Extra Settings */
-#define CONFIG_SYS_64BIT_VSPRINTF	1
-#define CONFIG_SYS_64BIT_STRTOUL	1
 #define CONFIG_CMD_DHCP			1
 
 #define CONFIG_CMD_DATE			1
