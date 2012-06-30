@@ -180,6 +180,21 @@
 1:	ldr r1, [r0, #CLKCTL_CDHIPR]
 	cmp r1, #0x0
 	bne 1b
+#else
+	ldr r1, =0x3FFFFFFF
+	str r1, [r0, #CLKCTL_CCGR0]
+	ldr r1, =0x0
+	str r1, [r0, #CLKCTL_CCGR1]
+	str r1, [r0, #CLKCTL_CCGR2]
+	str r1, [r0, #CLKCTL_CCGR3]
+	str r1, [r0, #CLKCTL_CCGR7]
+
+	ldr r1, =0x00030000
+	str r1, [r0, #CLKCTL_CCGR4]
+	ldr r1, =0x00FFF030
+	str r1, [r0, #CLKCTL_CCGR5]
+	ldr r1, =0x0F00030F
+	str r1, [r0, #CLKCTL_CCGR6]
 #endif
 
 	/* Switch ARM to step clock */
@@ -269,10 +284,24 @@
 	ldr r1, =0x00C30321
 	str r1, [r0, #CLKCTL_CSCDR1]
 #elif defined(CONFIG_MX53)
+	/* Switch peripheral to PLL2 */
+	ldr r0, =CCM_BASE_ADDR
+	ldr r1, =0x00808145
+	orr r1, r1, #(2 << 10)
+	orr r1, r1, #(0 << 16)
+	orr r1, r1, #(1 << 19)
+	str r1, [r0, #CLKCTL_CBCDR]
+
+	ldr r1, =0x00016154
+	str r1, [r0, #CLKCTL_CBCMR]
+	/* Change uart clk parent to pll2*/
+	ldr r1, [r0, #CLKCTL_CSCMR1]
+	and r1, r1, #0xfcffffff
+	orr r1, r1, #0x01000000
+	str r1, [r0, #CLKCTL_CSCMR1]
 	ldr r1, [r0, #CLKCTL_CSCDR1]
-	orr r1, r1, #0x3f
-	eor r1, r1, #0x3f
-	orr r1, r1, #0x21
+	and r1, r1, #0xffffffc0
+	orr r1, r1, #0x0a
 	str r1, [r0, #CLKCTL_CSCDR1]
 #endif
 	/* make sure divider effective */

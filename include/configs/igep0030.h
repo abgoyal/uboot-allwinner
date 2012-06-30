@@ -27,7 +27,6 @@
  */
 #define CONFIG_OMAP		1	/* in a TI OMAP core */
 #define CONFIG_OMAP34XX		1	/* which is a 34XX */
-#define CONFIG_OMAP3430		1	/* which is in a 3430 */
 #define CONFIG_OMAP3_IGEP0030	1	/* working with IGEP0030 */
 
 #define CONFIG_SDRC	/* The chip has SDRC controller */
@@ -78,9 +77,6 @@
 #define CONFIG_MMC			1
 #define CONFIG_OMAP_HSMMC		1
 #define CONFIG_DOS_PARTITION		1
-
-/* DDR  */
-#define CONFIG_OMAP3_NUMONYX_DDR	1
 
 /* USB */
 #define CONFIG_MUSB_UDC			1
@@ -235,9 +231,6 @@
 #define PHYS_SDRAM_1		OMAP34XX_SDRC_CS0
 #define PHYS_SDRAM_1_SIZE	(32 << 20)	/* at least 32 meg */
 #define PHYS_SDRAM_2		OMAP34XX_SDRC_CS1
-
-/* SDRAM Bank Allocation method */
-#define SDRC_R_B_C		1
 
 /*
  * FLASH and environment organization

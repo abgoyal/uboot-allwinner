@@ -25,6 +25,7 @@
 #include <version.h>
 #include <watchdog.h>
 #include <net.h>
+#include <mmc.h>
 #include <environment.h>
 
 #ifdef CONFIG_BITBANGMII
@@ -141,7 +142,7 @@ init_fnc_t *init_sequence[] =
 	stdio_init,
 	console_init_r,
 	interrupt_init,
-#ifdef BOARD_LATE_INIT
+#ifdef CONFIG_BOARD_LATE_INIT
 	board_late_init,
 #endif
 #if defined(CONFIG_CMD_NET)

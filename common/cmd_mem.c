@@ -74,7 +74,7 @@ int do_mem_md ( cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	length = dp_last_length;
 
 	if (argc < 2)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	if ((flag & CMD_FLAG_REPEAT) == 0) {
 		/* New command specified.  Check for a size specification.
@@ -168,7 +168,7 @@ int do_mem_mw ( cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	int	size;
 
 	if ((argc < 3) || (argc > 4))
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	/* Check for size specification.
 	*/
@@ -210,7 +210,7 @@ int do_mem_mdc ( cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	ulong count;
 
 	if (argc < 4)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	count = simple_strtoul(argv[3], NULL, 10);
 
@@ -237,7 +237,7 @@ int do_mem_mwc ( cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	ulong count;
 
 	if (argc < 4)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	count = simple_strtoul(argv[3], NULL, 10);
 
@@ -266,7 +266,7 @@ int do_mem_cmp (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	int     rcode = 0;
 
 	if (argc != 4)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	/* Check for size specification.
 	*/
@@ -352,7 +352,7 @@ int do_mem_cp ( cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	int	size;
 
 	if (argc != 4)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	/* Check for size specification.
 	*/
@@ -471,14 +471,14 @@ int do_mem_base (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 
 int do_mem_loop (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
-	ulong	addr, length, i, junk;
+	ulong	addr, length, i;
 	int	size;
 	volatile uint	*longp;
 	volatile ushort *shortp;
 	volatile u_char	*cp;
 
 	if (argc < 3)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	/* Check for a size spefication.
 	 * Defaults to long if no or incorrect specification.
@@ -518,7 +518,7 @@ int do_mem_loop (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 			longp = (uint *)addr;
 			i = length;
 			while (i-- > 0)
-				junk = *longp++;
+				*longp++;
 		}
 	}
 	if (size == 2) {
@@ -526,14 +526,14 @@ int do_mem_loop (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 			shortp = (ushort *)addr;
 			i = length;
 			while (i-- > 0)
-				junk = *shortp++;
+				*shortp++;
 		}
 	}
 	for (;;) {
 		cp = (u_char *)addr;
 		i = length;
 		while (i-- > 0)
-			junk = *cp++;
+			*cp++;
 	}
 }
 
@@ -547,7 +547,7 @@ int do_mem_loopw (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	volatile u_char	*cp;
 
 	if (argc < 4)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	/* Check for a size spefication.
 	 * Defaults to long if no or incorrect specification.
@@ -937,7 +937,7 @@ int do_mem_mtest (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 			if (readback != val) {
 				printf ("\nMem error @ 0x%08X: "
 					"found %08lX, expected %08lX\n",
-					(uint)addr, readback, val);
+					(uint)(uintptr_t)addr, readback, val);
 				errs++;
 				if (ctrlc()) {
 					putc ('\n');
@@ -977,10 +977,9 @@ mod_mem(cmd_tbl_t *cmdtp, int incrflag, int flag, int argc, char * const argv[])
 {
 	ulong	addr, i;
 	int	nbytes, size;
-	extern char console_buffer[];
 
 	if (argc != 2)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 #ifdef CONFIG_BOOT_RETRY_TIME
 	reset_cmd_timeout();	/* got a good command to get here */
@@ -1085,7 +1084,7 @@ int do_mem_crc (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	ulong *ptr;
 
 	if (argc < 3)
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 
 	addr = simple_strtoul (argv[1], NULL, 16);
 	addr += base_address;
@@ -1119,7 +1118,7 @@ int do_mem_crc (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 
 	if (argc < 3) {
 usage:
-		return cmd_usage(cmdtp);
+		return CMD_RET_USAGE;
 	}
 
 	av = argv + 1;

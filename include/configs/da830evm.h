@@ -87,14 +87,12 @@
  * Network & Ethernet Configuration
  */
 #ifdef CONFIG_DRIVER_TI_EMAC
-#define CONFIG_EMAC_MDIO_PHY_NUM	1
 #define CONFIG_MII
 #define CONFIG_BOOTP_DEFAULT
 #define CONFIG_BOOTP_DNS
 #define CONFIG_BOOTP_DNS2
 #define CONFIG_BOOTP_SEND_HOSTNAME
 #define CONFIG_NET_RETRY_COUNT	10
-#define CONFIG_NET_MULTI
 #endif
 
 /*
@@ -106,8 +104,10 @@
 #define CONFIG_SYS_NO_FLASH
 #define CONFIG_ENV_IS_IN_NAND		/* U-Boot env in NAND Flash  */
 #define CONFIG_ENV_OFFSET		(512 << 10)
-#define CONFIG_ENV_SIZE			(512 << 10)
+#define CONFIG_ENV_SIZE			(10 << 10) /* 10KB */
+#define CONFIG_SYS_NAND_USE_FLASH_BBT
 #define CONFIG_SYS_NAND_4BIT_HW_ECC_OOBFIRST
+#define CONFIG_SYS_NAND_PAGE_2K
 #define CONFIG_SYS_NAND_CS		3
 #define CONFIG_SYS_NAND_BASE		DAVINCI_ASYNC_EMIF_DATA_CE3_BASE
 #define CONFIG_SYS_NAND_PAGE_2K
@@ -115,7 +115,6 @@
 #define CONFIG_SYS_CLE_MASK		0x10
 #define CONFIG_SYS_ALE_MASK		0x8
 #define CONFIG_SYS_MAX_NAND_DEVICE	1 /* Max number of NAND devices */
-#define NAND_MAX_CHIPS			1
 #endif
 
 #ifdef CONFIG_USE_NOR
@@ -203,6 +202,10 @@
 #define CONFIG_CMD_MEMORY
 #undef CONFIG_CMD_FPGA
 #undef CONFIG_CMD_SETGETDCR
+
+#ifdef CONFIG_CMD_BDI
+#define CONFIG_CLOCKS
+#endif
 
 #ifndef CONFIG_DRIVER_TI_EMAC
 #undef CONFIG_CMD_NET
